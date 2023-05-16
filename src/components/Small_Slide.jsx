@@ -1,6 +1,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {AiFillStar} from "react-icons/ai"
+import { Navigation } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
@@ -8,7 +9,16 @@ import "swiper/css";
 const Small_Slide = ({type,items }) => {
   return (
     <>
-      <Swiper slidesPerView={4} spaceBetween={10}>
+      <Swiper
+        style={{
+          "--swiper-navigation-color": "white",
+          "--swiper-navigation-size": "20px",
+        }}
+        slidesPerView={3}
+        modules={[Navigation]}
+        navigation={true}
+        spaceBetween={10}
+      >
         {items?.map((item) => {
           return (
             <SwiperSlide
@@ -16,7 +26,7 @@ const Small_Slide = ({type,items }) => {
               key={item?.id}
             >
               <div
-                className="lg:w-[200px] h-[200px] lg:h-[350px]"
+                className="lg:w-[170px] rounded-md h-[200px] lg:h-[300px]"
                 style={{
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "center",
@@ -27,13 +37,11 @@ const Small_Slide = ({type,items }) => {
                     ")",
                 }}
               >
-                <div className="w-full h-[200px] lg:h-[350px] bg-gradient-to-t from-black relative">
-                  <h1 className="text-sky-400 font-semibold p-2 text-xl lg:text-2xl absolute bottom-0 truncate w-full">
-                    {
-                        type==='mv'? item?.original_title:item?.original_name
-                    }
+                <div className="w-full rounded-md h-[200px] lg:h-[300px] bg-gradient-to-t from-black relative">
+                  <h1 className="text-white p-2 text-md lg:text-xl absolute bottom-0 truncate w-full">
+                    {type === "movie" ? item?.original_title : item?.original_name}
                   </h1>
-                  <span className="bg-sky-400 top-2 text-white right-2 flex items-center px-2 absolute shadow-2xl text-sm lg:text-lg rounded-full">
+                  <span className="bg-sky-400 top-2 text-white right-2 flex items-center px-2 absolute shadow-2xl text-sm lg:text-md rounded-full">
                     <AiFillStar />
                     {Number.isInteger(item?.vote_average)
                       ? item?.vote_average + ".0"

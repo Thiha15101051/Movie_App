@@ -36,7 +36,7 @@ export default function Slide({ items,type }) {
         return (
           <SwiperSlide className="w-full h-full select-none" key={item.id}>
             <div
-              className=" w-full h-[300px] lg:h-[450px] "
+              className=" w-full h-[300px] lg:h-[400px] "
               style={{
                 width: "100%",
                 backgroundRepeat: "no-repeat",
@@ -60,7 +60,7 @@ export default function Slide({ items,type }) {
                     style={{ textShadow: "2px 3px 4px black" }}
                     className=" select-none px-5 lg:px-8 lg:text-4xl text-3xl text-sky-500 font-semibold"
                   >
-                    {type === "mv" ? item?.original_title : item?.original_name}
+                    {type === "movie" ? item?.original_title : item?.original_name}
                   </h1>
                   {/* genres */}
                   <div className="flex px-5 lg:px-8 flex-wrap">
@@ -84,7 +84,7 @@ export default function Slide({ items,type }) {
                     {item?.overview}
                   </p>
                   {/* Vote */}
-                  <span className="bg-sky-400 flex items-center text-white top-2 right-2 px-3 absolute shadow-2xl text-lg rounded-full">
+                  <span className="bg-sky-400 flex items-center text-white top-2 right-2 px-2 absolute shadow-2xl text-md lg:text-lg rounded-full">
                     <AiFillStar />
                     {Number.isInteger(item?.vote_average)
                       ? item?.vote_average + ".0"
@@ -101,7 +101,7 @@ export default function Slide({ items,type }) {
                   </div>
                   {/* date */}
                   <span className="text-yellow-300 absolute right-3 bottom-3">
-                    {type === "mv"
+                    {type === "movie"
                       ? `Release Date : ` + item?.release_date
                       : `Release Date : ` + item?.first_air_date}
                   </span>

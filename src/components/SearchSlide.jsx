@@ -5,17 +5,17 @@ import { AiFillStar } from "react-icons/ai";
 
 const SearchSlide = ({ type, Trending_mv, Trending_tv }) => {
   return (
-    <div className=" flex flex-col flex-wrap gap-7">
+    <div className=" flex flex-col flex-wrap gap-5">
         <h1 className=" font-semibold text-2xl">{type==='mv'? "Trending Movies":"Trending Series"}</h1>
       {Trending_mv?.results && Trending_tv?.results ?
         (type==='mv'? Trending_mv?.results:Trending_tv?.results).map((item, index) => {
-            if (index>=5) {
+            if (index>=2) {
                 return;
             }
             return (
-              <div key={item.id} className=" w-full  p-3  flex">
+              <div key={item.id} className=" w-full  flex">
                 <img
-                  className=" w-32 rounded-lg shadow-xl"
+                  className=" w-28 rounded-lg shadow-xl"
                   src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
                   alt=""
                 />

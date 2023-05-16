@@ -12,8 +12,8 @@ const View = () => {
     <Nav_bar/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/explore" element={<Explore/>}/>
-        <Route path="/search"  element={<Search/>}/>
+        <Route path="/explore?" element={<Explore/>}/>
+        <Route path="/search/?"  element={<Search/>}/>
       </Routes>
     <Footer/>
     </>

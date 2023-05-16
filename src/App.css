@@ -2,17 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-.is_active{
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    transition: border,transform 0.3s ease-in-out;
-    transform: scale(1.2);
-    color: rgba(0, 0, 0, 0.89);
+body{
+  background-color: rgba(0, 0, 0, 0.224);
 }
-.active{
-    border:1px solid black;
-    border-radius: 50%;
-    padding: 5px;
-    transition: border,transform 0.3s ease-in-out;
-    transform: scale(1.1);
+.is_active {
+  transition: border, transform 0.3s ease-in-out;
+  transform: scale(1.1);
+}
+
+.active {
+  color: rgb(4, 153, 195);
 }

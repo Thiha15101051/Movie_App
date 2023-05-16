@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const MovieApi = createApi({
-  reducerPath: "pokemonApi",
+  reducerPath: "MovieApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.themoviedb.org/" }),
   tagTypes: ["movie_api"],
   endpoints: (builder) => ({
@@ -60,8 +60,22 @@ export const MovieApi = createApi({
         `3/tv/airing_today?api_key=d9d51a8c920ae52197e735dc0a2ba8fd&language=en-US&page=1`,
       providesTags: ["movie_api"],
     }),
-    //https://api.themoviedb.org/3/movie/latest?api_key=d9d51a8c920ae52197e735dc0a2ba8fd&language=en-US&page=1
+    Mv_Explore: builder.query({
+      query: ({ category, genre, page }) =>
+        `3/discover/movie?api_key=d9d51a8c920ae52197e735dc0a2ba8fd&language=en-US&sort_by=${category}&include_adult=false&include_video=false&page=${page}&with_genres=${genre}&with_watch_monetization_types=flatrate`,
+      providesTags: ["movie_api"],
+    }),
+    Tv_Explore: builder.query({
+      query: ({ category, genre, page }) =>
+        `3/discover/tv?api_key=d9d51a8c920ae52197e735dc0a2ba8fd&language=en-US&sort_by=${category}&include_adult=false&include_video=false&page=${page}&with_genres=${genre}&with_watch_monetization_types=flatrate`,
+      providesTags: ["movie_api"],
+    }),
+    Search: builder.query({
+      query: ({ title, query, page }) =>
+        `3/search/${title}?api_key=d9d51a8c920ae52197e735dc0a2ba8fd&language=en-US&query=${query}&page=${page}&include_adult=false`,
+      providesTags: ["movie_api"],
+    }),
   }),
 });
 
-export const { useLatest_MvQuery,useLatest_TvQuery,useTrending_mvQuery,useTrending_tvQuery,useUpComing_MvQuery,useMv_genreQuery,useTv_genreQuery,usePopular_mvQuery,usePopular_tvQuery,useTop_rated_mvQuery,useTop_rated_tvQuery } = MovieApi;
+export const {useSearchQuery,useMv_ExploreQuery,useTv_ExploreQuery,useLatest_MvQuery,useLatest_TvQuery,useTrending_mvQuery,useTrending_tvQuery,useUpComing_MvQuery,useMv_genreQuery,useTv_genreQuery,usePopular_mvQuery,usePopular_tvQuery,useTop_rated_mvQuery,useTop_rated_tvQuery } = MovieApi;

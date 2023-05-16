@@ -8,7 +8,7 @@ const Genres_collection = ({ type }) => {
   return (
     <div className="flex flex-wrap gap-3">
       {Mv_items?.genres && Tv_items?.genres
-        ? (type === "mv" ? Mv_items?.genres : Tv_items?.genres).map((item) => {
+        ? (type === "movie" ? Mv_items?.genres : Tv_items?.genres).map((item) => {
             return (
               <button
                 value={type==='mv'? 'movie':'tv'}
