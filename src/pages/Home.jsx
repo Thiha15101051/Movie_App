@@ -82,7 +82,7 @@ const Home = () => {
         {/* {TrendingMvLoading && TrendingTvLoading ? null : (
           <div className=" lg:border border-gray-500"></div>
         )} */}
-        <div className=" w-2/6 bg-gray-300 shadow-lg relative hidden lg:block px-5">
+        <div className=" w-[28%] bg-gray-300 shadow-lg relative hidden lg:block px-5">
           {TrendingMvLoading && TrendingTvLoading ? null : (
             <Search_bar
               type={type}

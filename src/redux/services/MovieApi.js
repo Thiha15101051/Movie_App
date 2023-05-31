@@ -75,7 +75,18 @@ export const MovieApi = createApi({
         `3/search/${title}?api_key=d9d51a8c920ae52197e735dc0a2ba8fd&language=en-US&query=${query}&page=${page}&include_adult=false`,
       providesTags: ["movie_api"],
     }),
+    Detail: builder.query({
+      query: ({ type, id }) =>
+        `3/${type}/${id}?api_key=d9d51a8c920ae52197e735dc0a2ba8fd&language=en-US&append_to_response=credits`,
+      providesTags: ["movie_api"],
+    }),
+    Trailer: builder.query({
+      query: ({type,id}) =>
+        `3/${type}/${id}/videos?api_key=d9d51a8c920ae52197e735dc0a2ba8fd`,
+      providesTags: ["movie_api"],
+    }),
   }),
 });
-
-export const {useSearchQuery,useMv_ExploreQuery,useTv_ExploreQuery,useLatest_MvQuery,useLatest_TvQuery,useTrending_mvQuery,useTrending_tvQuery,useUpComing_MvQuery,useMv_genreQuery,useTv_genreQuery,usePopular_mvQuery,usePopular_tvQuery,useTop_rated_mvQuery,useTop_rated_tvQuery } = MovieApi;
+//https://api.themoviedb.org/3/movie/550/videos?api_key=THE_KEY  
+export const {useTrailerQuery,useSearchQuery,useDetailQuery,useMv_ExploreQuery,useTv_ExploreQuery,useLatest_MvQuery,useLatest_TvQuery,useTrending_mvQuery,useTrending_tvQuery,useUpComing_MvQuery,useMv_genreQuery,useTv_genreQuery,usePopular_mvQuery,usePopular_tvQuery,useTop_rated_mvQuery,useTop_rated_tvQuery } = MovieApi;
+ 

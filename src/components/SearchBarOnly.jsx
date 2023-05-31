@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {FiSearch}from "react-icons/fi"
 import { useLocation, useNavigate } from "react-router-dom";
 
-const SearchBarOnly = () => {
+const SearchBarOnly = ({value}) => {
   const [query,setQuery]=useState();
   const nav=useNavigate();
   const location=useLocation();
@@ -22,7 +22,7 @@ const SearchBarOnly = () => {
         >
           <input
             type="text"
-            defaultValue={query}
+            defaultValue={value}
             onChange={(e)=>setQuery(e.target.value)}
             placeholder="SEARCH. . ."
             className="w-full mx-3 bg-transparent border-b border-b-gray-600 border-dotted h-8 text-md"

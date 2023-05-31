@@ -61,7 +61,7 @@ export default function Nav_bar() {
     dispatch(reset_Category());
   }
   const links = menu.map((item) => (
-    <NavLink key={nanoid()} to={item.link}>
+    <NavLink key={nanoid()} to={item.link} onClick={() => close()}>
       <div className=" flex items-center w-3/4 pl-5 py-3">
         <div>{item.icon}</div>
         <div className="ml-3 text-md">{item.label}</div>
@@ -69,7 +69,7 @@ export default function Nav_bar() {
     </NavLink>
   ));
   const Personal = personal.map((item) => (
-    <NavLink key={nanoid()} to={item.link} onClick={close}>
+    <NavLink key={nanoid()} to={item.link} onClick={() => close()}>
       <div className=" py-3 flex items-center w-3/4 pl-5">
         <div>{item.icon}</div>
         <div className=" ml-3 text-md">{item.label}</div>
@@ -80,7 +80,7 @@ export default function Nav_bar() {
   return (
     <>
       <Navbar
-        className={`opacity-90 shadow-lg shadow-white fixed bg-gray-700 inset-0 z-10 h-max max-w-full block lg:hidden rounded-none py-2 px-4 lg:px-7 lg:py-3`}
+        className={`opacity-90 shadow-lg border-none shadow-white fixed bg-gray-700 inset-0 z-10 h-max max-w-full block lg:hidden rounded-none py-2 px-4 lg:px-7 lg:py-3`}
       >
         <div className="flex items-center justify-between text-blue-gray-900">
           <Link id="RouterNavLink" to={"/"} className="flex items-center gap-3">

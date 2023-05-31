@@ -29,8 +29,13 @@ const Explore = () => {
   const category = SearchParams.has("sort_by")
     ? SearchParams.get("sort_by")
     : globalCategory;
+  const query = SearchParams.get("query");
   const genre = SearchParams.has("genre") ? SearchParams.get("genre") : null;
-  const page =SearchParams.has('page')? SearchParams.get('page'): (type==='movie'? Mv_page:Tv_page);
+  const page = SearchParams.has("page")
+    ? SearchParams.get("page")
+    : type === "movie"
+    ? Mv_page
+    : Tv_page;
   const {
     data: Mv_Data,
     refetch: Mv_refresh,
@@ -42,13 +47,15 @@ const Explore = () => {
     isLoading: Tv_Loading,
   } = useTv_ExploreQuery({ category, genre, page });
 
+  //total page//
   let TotalPages;
-  if (type==='movie') {
-    TotalPages=Mv_Data?.total_pages;
-  }else{
-    TotalPages=Tv_Data?.total_pages
+  if (type === "movie") {
+    TotalPages = Mv_Data?.total_pages;
+  } else {
+    TotalPages = Tv_Data?.total_pages;
   }
 
+  //refreshing query
   useEffect(() => {
     Mv_refresh();
   }, [category, genre, page, Mv_refresh]);
@@ -76,7 +83,7 @@ const Explore = () => {
               >
                 FIND FILMS THAT BEST FIT YOU
               </h1>
-              <SearchBarOnly />
+              <SearchBarOnly value={query} />
             </div>
           </div>
           {/* moviesOrSeries */}
@@ -90,10 +97,14 @@ const Explore = () => {
             <div className="w-full lg:w-9/12 flex flex-wrap justify-center gap-5">
               {type === "movie"
                 ? Mv_Data?.results?.map((item) => (
-                    <MovieItem item={item} type={type} key={item.id} />
+                    <Link key={item?.id} to={`/movie/${item.id}`}>
+                      <MovieItem item={item} type={type} />
+                    </Link>
                   ))
                 : Tv_Data?.results?.map((item) => (
-                    <MovieItem item={item} type={type} key={item.id} />
+                    <Link key={item?.id} to={`/tv/${item.id}`}>
+                      <MovieItem item={item} type={type} />
+                    </Link>
                   ))}
               {/* seeMoreBtn */}
               {Mv_Loading && Tv_Loading ? null : (
@@ -105,7 +116,6 @@ const Explore = () => {
           </div>
         </div>
       </div>
-
     </>
   );
 };

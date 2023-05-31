@@ -1,6 +1,7 @@
 import React from "react";
 import { useMv_genreQuery, useTv_genreQuery } from "../redux/services/MovieApi";
 import { nanoid } from "@reduxjs/toolkit";
+import { Link } from "react-router-dom";
 
 const Genres_collection = ({ type }) => {
   const { data: Mv_items } = useMv_genreQuery();
@@ -10,13 +11,17 @@ const Genres_collection = ({ type }) => {
       {Mv_items?.genres && Tv_items?.genres
         ? (type === "movie" ? Mv_items?.genres : Tv_items?.genres).map((item) => {
             return (
-              <button
-                value={type==='mv'? 'movie':'tv'}
+              <Link
                 key={nanoid()}
-                className=" text-gray-600 bg-sky-100 p-2 rounded-full shadow-xl"
+                to={`/explore?genre=${item?.id}`}
               >
-                {item?.name}
-              </button>
+                <button
+                  value={type === "mv" ? "movie" : "tv"}
+                  className=" text-gray-600 bg-sky-100 p-2 rounded-full shadow-xl"
+                >
+                  {item?.name}
+                </button>
+              </Link>
             );
           })
         : null}

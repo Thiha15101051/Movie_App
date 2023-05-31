@@ -7,21 +7,30 @@ import {
 } from "../redux/features/counterSlice";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const PaginationBar = ({total_pages}) => {
+const PaginationBar = ({type,total_pages}) => {
   const [mv_page, setMv_page] = useState(1);
   const [tv_page, setTv_page] = useState(1);
   const [checkMvUrl, setCheckMvUrl] = useState(false);
   const [checkTvUrl, setCheckTvUrl] = useState(false);
   const nav = useNavigate();
   const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const page = queryParams.get("page");
   const dispatch = useDispatch();
-  const { type, Mv_page, Tv_page } = useSelector((state) => state.counter);
+  const { Mv_page, Tv_page } = useSelector((state) => state.counter);
 
+  useEffect(()=>{
+    if (!page) {
+      setMv_page(1)
+      setTv_page(1)
+    }
+  },[type])
   // MvComponentPaginateHandler
   useEffect(() => {
-    dispatch(increase_Mv_Page(mv_page));
     if (mv_page !== 1 || checkMvUrl) {
+      dispatch(increase_Mv_Page(mv_page));
       setCheckMvUrl(true);
+      setCheckTvUrl(false);
       dispatch(increase_Mv_Page(mv_page));
       const searchParam = new URLSearchParams(location.search);
       searchParam.set("page", mv_page);
@@ -34,8 +43,9 @@ const PaginationBar = ({total_pages}) => {
 
   // TvComponentPaginateHandler
   useEffect(() => {
-    dispatch(increase_Tv_Page(tv_page));
     if (tv_page !== 1 || checkTvUrl) {
+      dispatch(increase_Tv_Page(tv_page));
+      setCheckMvUrl(false);
       setCheckTvUrl(true);
       dispatch(increase_Mv_Page(mv_page));
       const searchParam = new URLSearchParams(location.search);
@@ -52,7 +62,7 @@ const PaginationBar = ({total_pages}) => {
       {type === "movie" ? (
         <Pagination
           total={total_pages}
-          value={Mv_page}
+          value={page? mv_page:Mv_page}
           onChange={setMv_page}
           position="center"
           styles={(theme) => ({
@@ -70,7 +80,7 @@ const PaginationBar = ({total_pages}) => {
         <Pagination
           total={total_pages}
           position="center"
-          value={Tv_page}
+          value={page? tv_page:Tv_page}
           onChange={setTv_page}
           styles={(theme) => ({
             control: {

@@ -11,6 +11,7 @@ const Change_type = () => {
     const urlSearchParams = new URLSearchParams(location.search);
     urlSearchParams.forEach((value, key) => {
       urlSearchParams.delete(key)
+      urlSearchParams.delete(value)
     });
   return (
     <>

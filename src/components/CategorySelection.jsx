@@ -12,6 +12,11 @@ export default function CategorySelection() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const sort_by = queryParams.get("sort_by");
+  useEffect(()=>{
+    if (sort_by) {
+      setCategoryValue(sort_by);
+    }
+  },[])
   
   const categoryHandler = (value) => {
     dispatch(changeCategory(value));
@@ -43,7 +48,7 @@ export default function CategorySelection() {
                     { value: "vote_average.desc", label: "Most rating" },
                     { value: "release_date.desc", label: "Latest" },
                   ]}
-                  value={category}
+                  value={sort_by? categoryValue:category}
                   onChange={categoryHandler}
                 />
               </form>

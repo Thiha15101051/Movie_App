@@ -13,6 +13,7 @@ import { Navigation, Autoplay } from "swiper";
 import { useMv_genreQuery } from "../redux/services/MovieApi";
 import "swiper/css";
 import { AiFillStar } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 export default function Slide({ items,type }) {
   const { data } = useMv_genreQuery();
@@ -60,7 +61,9 @@ export default function Slide({ items,type }) {
                     style={{ textShadow: "2px 3px 4px black" }}
                     className=" select-none px-5 lg:px-8 lg:text-4xl text-3xl text-sky-500 font-semibold"
                   >
-                    {type === "movie" ? item?.original_title : item?.original_name}
+                    {type === "movie"
+                      ? item?.original_title
+                      : item?.original_name}
                   </h1>
                   {/* genres */}
                   <div className="flex px-5 lg:px-8 flex-wrap">
@@ -92,9 +95,11 @@ export default function Slide({ items,type }) {
                   </span>
                   {/* btn */}
                   <div className="flex gap-5 px-5 lg:px-8">
-                    <button className=" bg-sky-400 text-yellow-200 text-xl text-center hover:text-black p-4 rounded-full">
-                      <TfiMore />
-                    </button>
+                    <Link key={item?.id} to={`/${type}/${item?.id}`}>
+                      <button className=" bg-sky-400 text-yellow-200 text-xl text-center hover:text-black p-4 rounded-full">
+                        <TfiMore />
+                      </button>
+                    </Link>
                     <button className=" bg-sky-400 text-yellow-200 text-xl text-center hover:text-black p-4 rounded-full">
                       <FiPlay />
                     </button>
