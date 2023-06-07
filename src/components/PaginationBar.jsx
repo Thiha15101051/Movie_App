@@ -18,6 +18,7 @@ const PaginationBar = ({type,total_pages}) => {
   const page = queryParams.get("page");
   const dispatch = useDispatch();
   const { Mv_page, Tv_page } = useSelector((state) => state.counter);
+  
 
   useEffect(()=>{
     if (!page) {
@@ -44,6 +45,7 @@ const PaginationBar = ({type,total_pages}) => {
   // TvComponentPaginateHandler
   useEffect(() => {
     if (tv_page !== 1 || checkTvUrl) {
+
       dispatch(increase_Tv_Page(tv_page));
       setCheckMvUrl(false);
       setCheckTvUrl(true);

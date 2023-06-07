@@ -17,7 +17,7 @@ const View = () => {
         <Route path="/search/?"  element={<Search/>}/>
         <Route path="/:type/:id" element={<Detail/>}/>
       </Routes>
-    <Footer/>
+    <Footer/> 
     </>
   );
 };
